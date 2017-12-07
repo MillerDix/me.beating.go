@@ -14,8 +14,8 @@ func main() {
 	}
 	defer rd.Close()
 	//
-	for i := 1; i < 10; i++ {
-		rd.Do("HMSET",
+	for i := 0; i < 10; i++ {
+		_, err := rd.Do("HMSET",
 			fmt.Sprintf("article:%d", 1511858529950+i),
 			"Id",
 			1511858529950+i,
@@ -29,11 +29,16 @@ func main() {
 			i,
 			"Source",
 			fmt.Sprintf("ArticleSource:%d", i),
-			"poster",
+			"Poster",
 			"http://www.beating.io/static/media/CASSINI_THE_GRAND_FINALE.11b33571.jpg",
 			"Publishtime",
 			1511858529950+i,
 		)
+		_, err = rd.Do("LPUSH", "articles", 1511858529950+i)
+		if err != nil {
+			fmt.Println("failed")
+			return
+		}
 	}
-
+	fmt.Println("finish")
 }
