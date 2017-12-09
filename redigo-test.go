@@ -15,7 +15,7 @@ import (
 // Filepath: file should be in the same folder with this script
 // redis key: article:1511858529959
 func newArticle(rd redis.Conn) {
-	fileTitle := "test"
+	fileTitle := "webpack入门"
 	file, err := os.Open("./files/" + fileTitle + ".md")
 	if err != nil {
 		fmt.Println("os open file failed")
