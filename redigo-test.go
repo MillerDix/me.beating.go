@@ -15,7 +15,7 @@ import (
 // Filepath: file should be in the same folder with this script
 // redis key: article:1511858529959
 func newArticle(rd redis.Conn) {
-	fileTitle := "CSS Modules 详解及 React 中实践"
+	fileTitle := "什么是CORS"
 	file, err := os.Open("./files/" + fileTitle + ".md")
 	if err != nil {
 		fmt.Println("os open file failed")
@@ -23,12 +23,19 @@ func newArticle(rd redis.Conn) {
 	}
 
 	var textData string
+	var summary string
+	sumIndex := 0
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		textData = textData + scanner.Text() + "\n"
+		text := scanner.Text()
+		textData = textData + text + "\n"
+		if sumIndex < 5 {
+			summary = summary + text
+			sumIndex++
+		}
 	}
 
-	_, er := rd.Do("HMSET", "article:1511858529957", "Content", textData, "Title", fileTitle)
+	_, er := rd.Do("HMSET", "article:1511858529959", "Content", textData, "Title", fileTitle, "Summary", summary)
 	if er != nil {
 		fmt.Println("write new article data to redis failed, quiting")
 		return

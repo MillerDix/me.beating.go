@@ -20,6 +20,7 @@ type Article struct {
 	Source      string
 	Publishtime int
 	Poster      string
+	Summary	    string
 }
 
 var conn redis.Conn
@@ -57,11 +58,11 @@ func art_all(w http.ResponseWriter, r *http.Request) {
 		tmp.Id = intid
 		tmp.Title = artc["Title"]
 		tmp.Subtitle = artc["Subtitle"]
-		tmp.Content = artc["Content"]
 		tmp.Views = intviews
 		tmp.Source = artc["Source"]
 		tmp.Publishtime = intpublishtime
 		tmp.Poster = artc["Poster"]
+		tmp.Summary = artc["Summary"]
 
 		list = append(list, tmp)
 	}
