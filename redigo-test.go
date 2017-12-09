@@ -15,8 +15,8 @@ import (
 // Filepath: file should be in the same folder with this script
 // redis key: article:1511858529959
 func newArticle(rd redis.Conn) {
-	fileTitle := "什么是CORS"
-	file, err := os.Open("./" + fileTitle + ".md")
+	fileTitle := "test"
+	file, err := os.Open("./files/" + fileTitle + ".md")
 	if err != nil {
 		fmt.Println("os open file failed")
 		return
@@ -28,7 +28,7 @@ func newArticle(rd redis.Conn) {
 		textData = textData + scanner.Text() + "\n"
 	}
 
-	_, er := rd.Do("HMSET", "article:1511858529959", "Content", textData, "Title", fileTitle)
+	_, er := rd.Do("HMSET", "article:1511858529958", "Content", textData, "Title", fileTitle)
 	if er != nil {
 		fmt.Println("write new article data to redis failed, quiting")
 		return
