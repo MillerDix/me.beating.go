@@ -50,7 +50,7 @@ func art_all(w http.ResponseWriter, r *http.Request) {
 		var tmp Article
 		artc, _ := redis.StringMap(conn.Do("HGETALL", fmt.Sprintf("article:%s", artcIds[i])))
 
-		// TODO: this is ugly
+		// TODO: THIS IS UGLY
 		intid, _ := strconv.Atoi(artc["Id"])
 		intviews, _ := strconv.Atoi(artc["Views"])
 		intpublishtime, _ := strconv.Atoi(artc["Publishtime"])
