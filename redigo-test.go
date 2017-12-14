@@ -5,6 +5,7 @@ import (
 	"os"
 	"bufio"
 	"math/rand"
+	"time"
 
 	"github.com/garyburd/redigo/redis"
 )
@@ -65,6 +66,7 @@ func newArticle(rd redis.Conn) {
 		}
 
 		imageURL := "http://www.beating.io/static/media/" + images[rand.Intn(len(images))]
+		t := time.Now()
 		_, err = rd.Do(
 			"HMSET", fmt.Sprintf("article:%d", rs),
 			"Id", rs,
@@ -75,13 +77,14 @@ func newArticle(rd redis.Conn) {
 			"Views", rs,
 			"Source", fmt.Sprintf("Article %d Source", rs),
 			"Poster", imageURL,
+			"Publishtime", t.Unix() * 1000,
 		)
 		if err != nil {
 			fmt.Println("failed to write new article data to redis, quiting")
 			return
 		}
 
-		fmt.Println("wrote file " + f.Name() + " to redis sccess")
+		fmt.Println("wrote file " + f.Name() + " to redis success")
 
 		err = os.Rename("./newfiles/" + f.Name(), "./files/" + f.Name())
 		if err != nil {
