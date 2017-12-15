@@ -6,6 +6,8 @@ import (
 	"bufio"
 	"math/rand"
 	"time"
+	"path/filepath"
+	"strings"
 
 	"github.com/garyburd/redigo/redis"
 )
@@ -70,7 +72,7 @@ func newArticle(rd redis.Conn) {
 		_, err = rd.Do(
 			"HMSET", fmt.Sprintf("article:%d", rs),
 			"Id", rs,
-			"Title", f.Name(),
+			"Title", strings.TrimSuffix(f.Name(), filepath.Ext(f.Name())),
 			"Subtitle", fmt.Sprintf("Article %d Subtitle", rs),
 			"Summary", summary,
 			"Content", textData,
