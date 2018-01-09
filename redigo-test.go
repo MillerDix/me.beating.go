@@ -17,13 +17,21 @@ import (
 // Content: ~
 // Filepath: file should be in the same folder with this script
 // redis key: article:1511858529959
+// const cloudinaries = {
+//   Cassini: 'http://res.cloudinary.com/millerd/image/upload/v1515493291/CASSINI_THE_GRAND_FINALE_apg5yb.jpg',
+//   Dawn: 'http://res.cloudinary.com/millerd/image/upload/v1515493291/500px210695375_ci59ps.jpg',
+//   Curiosity: 'http://res.cloudinary.com/millerd/image/upload/v1515493344/curiosity_a4g6je.jpg',
+//   SunriseSpacewalk: 'http://res.cloudinary.com/millerd/image/upload/v1515493300/sunrise-spacewalk-png8_qhnw0k.png'
+// }
+
+// export default cloudinaries;
 func newArticle(rd redis.Conn) {
 	images := []string{
-		"CASSINI_THE_GRAND_FINALE.11b33571.jpg",
-		"dawn.56e3457b.jpg",
-		"curiosity.f596b6bb.jpg",
-		"space.c5f4a997.jpg",
-		"sunrise-spacewalk.028439bb.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515493291/CASSINI_THE_GRAND_FINALE_apg5yb.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515493291/dawn_ci59ps.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515493344/curiosity_a4g6je.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515494236/space_bhrgqw.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515493300/sunrise-spacewalk-png8_qhnw0k.png",
 	}
 
 	dirs, err := os.Open("./newfiles/")
@@ -67,7 +75,7 @@ func newArticle(rd redis.Conn) {
 			return
 		}
 
-		imageURL := "http://www.beating.io/static/media/" + images[rand.Intn(len(images))]
+		imageURL := images[rand.Intn(len(images))]
 		t := time.Now()
 		_, err = rd.Do(
 			"HMSET", fmt.Sprintf("article:%d", rs),
