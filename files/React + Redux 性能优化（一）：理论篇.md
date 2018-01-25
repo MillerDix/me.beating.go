@@ -86,23 +86,23 @@ export default connect(mapStateToProps, { markItem })(App);
 *   本地启动项目， 打开 Chrome 浏览器，**在地址栏以访问项目地址加上`react_perf`后缀的方式访问项目页面**，比如我的项目地址是: http://localhost:3000/ 的话，实际请访问 http://localhost:8080/?react_perf 。加上`react_perf`后缀的用意是启用 React 中的性能埋点，这些埋点用于统计 React 中某些操作的耗时，使用`User Timing API`实现
 *   打开 Chrome 开发者工具，切换到 performance 面板
 
-![](http://res.cloudinary.com/millerd/image/upload/v1515494901/v2-6c04abba66e75c103cf24877e9a0ed6b_b_pdliri.jpg)
+![](http://res.cloudinary.com/millerd/image/upload/v1515494901/Beatinglog/10001/v2-6c04abba66e75c103cf24877e9a0ed6b_b_pdliri.jpg)
   
 *   点击 performance 面板左上角的“录制”按钮，开始录制性能信息
 
-![](http://res.cloudinary.com/millerd/image/upload/v1515495089/v2-3895046e074e612d715a465541b61630_b_kzo4m9.jpg)
+![](http://res.cloudinary.com/millerd/image/upload/v1515495089/Beatinglog/10001/v2-3895046e074e612d715a465541b61630_b_kzo4m9.jpg)
   
 
 *   点击列表中的任意一项
 *   等被点击项进入高亮状态时，点击“stop”按钮停止录制性能信息
 
-![](http://res.cloudinary.com/millerd/image/upload/v1515495125/v2-4ba9e4ed858e0f0fdf4d3ce6c4ec7d17_b_enzeqy.jpg)
+![](http://res.cloudinary.com/millerd/image/upload/v1515495125/Beatinglog/10001/v2-4ba9e4ed858e0f0fdf4d3ce6c4ec7d17_b_enzeqy.jpg)
 
   
 
 *   接下来你就能看到点击阶段的性能大盘信息：
 
-![](http://res.cloudinary.com/millerd/image/upload/v1515495148/v2-b9877c80e2c1588203972160adb8e0b6_b_qszak3.jpg)
+![](http://res.cloudinary.com/millerd/image/upload/v1515495148/Beatinglog/10001/v2-b9877c80e2c1588203972160adb8e0b6_b_qszak3.jpg)
 
   
 
@@ -110,7 +110,7 @@ export default connect(mapStateToProps, { markItem })(App);
 
   
 
-![](http://res.cloudinary.com/millerd/image/upload/v1515495169/v2-a94c8f189b3fb0d2d59d2344a9e7fb8d_b_t3ejsd.jpg)
+![](http://res.cloudinary.com/millerd/image/upload/v1515495169/Beatinglog/10001/v2-a94c8f189b3fb0d2d59d2344a9e7fb8d_b_t3ejsd.jpg)
 
   
 
@@ -118,13 +118,13 @@ export default connect(mapStateToProps, { markItem })(App);
 
   
 
-![](http://res.cloudinary.com/millerd/image/upload/v1515495187/v2-fcecf7d26b9de7283d7ef76f7405c28e_b_kbmpei.jpg)
+![](http://res.cloudinary.com/millerd/image/upload/v1515495187/Beatinglog/10001/v2-fcecf7d26b9de7283d7ef76f7405c28e_b_kbmpei.jpg)
 
 这已经能猜出一二，如果你还不确定这个函数究竟干了什么，不如展开`User Timing`一栏看看更“通俗”的时间消耗
 
   
 
-![](http://res.cloudinary.com/millerd/image/upload/v1515495208/v2-f773851d01a4d0b5b42429970a97ffda_b_s2kc9r.jpg)
+![](http://res.cloudinary.com/millerd/image/upload/v1515495208/Beatinglog/10001/v2-f773851d01a4d0b5b42429970a97ffda_b_s2kc9r.jpg)
 
   
 

@@ -18,9 +18,7 @@ React 15.4.0 introduced a new performance timeline feature that lets you see exa
 4.  Stop recording.
 5.  Inspect the visualization under **User Timing.**
 
-![](https://cdn-images-1.medium.com/max/1000/1*cOO5vUnbkdDUcqMW8ebJqA.png)
-
-![](https://cdn-images-1.medium.com/max/1000/1*cOO5vUnbkdDUcqMW8ebJqA.png)
+![](http://res.cloudinary.com/millerd/image/upload/v1516849779/Beatinglog/10004/1_cOO5vUnbkdDUcqMW8ebJqA.png)
 
 #### Understanding the output
 
@@ -69,9 +67,7 @@ Generally, if `render` runs, and there were no changes to the virtual DOM, it is
 
 #### Using why-did-you-update
 
-![](https://cdn-images-1.medium.com/max/1000/1*Lb4nr_WLwnLt63jUoszrnQ.png)
-
-![](https://cdn-images-1.medium.com/max/1000/1*Lb4nr_WLwnLt63jUoszrnQ.png)
+![](http://res.cloudinary.com/millerd/image/upload/v1516849855/Beatinglog/10004/1_Lb4nr_WLwnLt63jUoszrnQ.png)
 
 `why-did-you-update` is a library that hooks into React and detects potentially unnecessary component renders. It detects when a component’s `render` method is called despite its props not having changed.
 
@@ -105,17 +101,13 @@ Notice that a few components in the app are rendering unnecessarily. Try impleme
 
 ### Tool #3: React Developer Tools
 
-![](https://cdn-images-1.medium.com/max/1000/1*1Ih6h8djFyH13tfFK3D1sw.png)
-
-![](https://cdn-images-1.medium.com/max/1000/1*1Ih6h8djFyH13tfFK3D1sw.png)
+![](http://res.cloudinary.com/millerd/image/upload/v1516849918/Beatinglog/10004/1_1Ih6h8djFyH13tfFK3D1sw.png)
 
 The React Developer Tools Chrome extension has a built-in feature for visualizing component updates. This is helpful for detecting unnecessary render cycles. To use it, first make sure to [install the extension here](https://codesandbox.io/s/xGJP4QExn).
 
 Then, open the extension by clicking the “React” tab in the Chrome DevTools and check “Highlight Updates”.
 
-![](https://cdn-images-1.medium.com/max/800/1*GP4vXvW3WO0vTbggDfus4Q.png)
-
-![](https://cdn-images-1.medium.com/max/800/1*GP4vXvW3WO0vTbggDfus4Q.png)
+![](http://res.cloudinary.com/millerd/image/upload/v1516849942/Beatinglog/10004/1_GP4vXvW3WO0vTbggDfus4Q.png)
 
 Then, simply use your app. Interact with various components and watch the DevTools work its magic.
 
@@ -183,9 +175,7 @@ render() {
 
 The React Developer Tools only work if you are running your app on your own machine. If you’re interested in understanding performance issues that users see in production, try [LogRocket](https://logrocket.com).
 
-![](https://cdn-images-1.medium.com/max/1000/1*s_rMyo6NbrAsP-XtvBaXFg.png)
-
-![](https://cdn-images-1.medium.com/max/1000/1*s_rMyo6NbrAsP-XtvBaXFg.png)
+![](http://res.cloudinary.com/millerd/image/upload/v1516849980/Beatinglog/10004/1_s_rMyo6NbrAsP-XtvBaXFg.png)
 
 [LogRocket](https://logrocket.com) is like a DVR for web apps, recording _literally_ _everything_ that happens on your site. Instead of guessing why problems happen, you can replay sessions with bugs or performance issues to quickly understand the root cause.
 

@@ -27,11 +27,11 @@ import (
 // export default cloudinaries;
 func newArticle(rd redis.Conn) {
 	images := []string{
-		"http://res.cloudinary.com/millerd/image/upload/v1515493291/CASSINI_THE_GRAND_FINALE_apg5yb.jpg",
-		"http://res.cloudinary.com/millerd/image/upload/v1515493291/dawn_ci59ps.jpg",
-		"http://res.cloudinary.com/millerd/image/upload/v1515493344/curiosity_a4g6je.jpg",
-		"http://res.cloudinary.com/millerd/image/upload/v1515494236/space_bhrgqw.jpg",
-		"http://res.cloudinary.com/millerd/image/upload/v1515493300/sunrise-spacewalk-png8_qhnw0k.png",
+		"http://res.cloudinary.com/millerd/image/upload/v1515493291/Beatinglog/home/CASSINI_THE_GRAND_FINALE_apg5yb.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515493291/Beatinglog/home/dawn_ci59ps.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515493344/Beatinglog/home/curiosity_a4g6je.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/v1515494236/Beatinglog/home/space_bhrgqw.jpg",
+		"http://res.cloudinary.com/millerd/image/upload/c_scale,q_auto,w_1200/v1515493300/Beatinglog/home/sunrise-spacewalk-png8_qhnw0k.png",
 	}
 
 	dirs, err := os.Open("./newfiles/")
@@ -42,6 +42,9 @@ func newArticle(rd redis.Conn) {
 	files, err := dirs.Readdir(0)
 
 	for _, f := range files {
+		if !strings.HasSuffix(f.Name(), ".md") {
+			continue
+		}
 		file, err := os.Open("./newfiles/" + f.Name())
 		if err != nil {
 			fmt.Println("failed to read file: " + f.Name() + " quiting")

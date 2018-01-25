@@ -224,3 +224,5 @@ Access-Control-Allow-Headers用于告知浏览器可以在实际发送跨域请�
 
 注意：由于CDN的缓存特性，CDN配合OSS时，需要在CDN中设置CORS配置。
 
+https://yq.aliyun.com/articles/69313
+

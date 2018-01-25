@@ -25,3 +25,5 @@ server {
 }
 ```
 
+http://to-u.xyz/2016/04/21/react-nginx/
+
