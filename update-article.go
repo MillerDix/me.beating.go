@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"bufio"
-	// "math/rand"
+	"math/rand"
 	// "time"
 	// "path/filepath"
 	"strings"
