@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"bufio"
+	"fmt"
 	"math/rand"
-	"time"
+	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/garyburd/redigo/redis"
 )
@@ -65,7 +65,7 @@ func newArticle(rd redis.Conn) {
 			}
 		}
 		fmt.Println("read file: " + f.Name() + " success")
-		
+
 		// incr id for this article
 		rs, err := rd.Do("INCR", "next_article_id")
 		if err == nil {
@@ -82,7 +82,7 @@ func newArticle(rd redis.Conn) {
 		t := time.Now()
 		_, err = rd.Do(
 			"HMSET", fmt.Sprintf("article:%d", rs),
-			"Id", rs,
+			"ID", rs,
 			"Title", strings.TrimSuffix(f.Name(), filepath.Ext(f.Name())),
 			"Subtitle", fmt.Sprintf("Article %d Subtitle", rs),
 			"Summary", summary,
@@ -90,7 +90,7 @@ func newArticle(rd redis.Conn) {
 			"Views", rs,
 			"Source", fmt.Sprintf("Article %d Source", rs),
 			"Poster", imageURL,
-			"Publishtime", t.Unix() * 1000,
+			"Publishtime", t.Unix()*1000,
 		)
 		if err != nil {
 			fmt.Println("failed to write new article data to redis, quiting")
@@ -99,7 +99,7 @@ func newArticle(rd redis.Conn) {
 
 		fmt.Println("wrote file " + f.Name() + " to redis success")
 
-		err = os.Rename("./newfiles/" + f.Name(), "./files/" + f.Name())
+		err = os.Rename("./newfiles/"+f.Name(), "./files/"+f.Name())
 		if err != nil {
 			fmt.Println("failed to move file: " + f.Name())
 			return
