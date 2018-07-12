@@ -11,8 +11,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type Article struct {
-	Id          int
+type article struct {
+	ID          int
 	Title       string
 	Subtitle    string
 	Content     string
@@ -20,7 +20,7 @@ type Article struct {
 	Source      string
 	Publishtime int
 	Poster      string
-	Summary	    string
+	Summary     string
 }
 
 var conn redis.Conn
@@ -38,24 +38,24 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	}
 }
 
-func art_all(w http.ResponseWriter, r *http.Request) {
+func artAll(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("list of all articles")
 	artcIds, err := redis.Strings(conn.Do("LRANGE", "articles", "0", "10"))
 	if err != nil {
 		return
 	}
 
-	var list []Article
+	var list []article
 	for i := 0; i < len(artcIds); i++ {
-		var tmp Article
+		var tmp article
 		artc, _ := redis.StringMap(conn.Do("HGETALL", fmt.Sprintf("article:%s", artcIds[i])))
 
 		// TODO: THIS IS UGLY
-		intid, _ := strconv.Atoi(artc["Id"])
+		intid, _ := strconv.Atoi(artc["ID"])
 		intviews, _ := strconv.Atoi(artc["Views"])
 		intpublishtime, _ := strconv.Atoi(artc["Publishtime"])
 
-		tmp.Id = intid
+		tmp.ID = intid
 		tmp.Title = artc["Title"]
 		tmp.Subtitle = artc["Subtitle"]
 		tmp.Views = intviews
@@ -72,11 +72,11 @@ func art_all(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func art_categories(w http.ResponseWriter, r *http.Request) {
+func artCategories(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("list of all categories")
 }
 
-func art_detail(w http.ResponseWriter, r *http.Request) {
+func artDetail(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("article detail")
 	data, _ := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
@@ -85,14 +85,14 @@ func art_detail(w http.ResponseWriter, r *http.Request) {
 	err := json.Unmarshal(data, &body)
 
 	if err == nil {
-		rs, _ := redis.StringMap(conn.Do("HGETALL", "article:"+strconv.FormatFloat(body["Id"].(float64), 'f', -1, 64)))
+		rs, _ := redis.StringMap(conn.Do("HGETALL", "article:"+strconv.FormatFloat(body["ID"].(float64), 'f', -1, 64)))
 		jsonres, _ := json.Marshal(rs)
 		fmt.Fprint(w, string(jsonres))
 	}
 }
 
 func main() {
-	rt_main := mux.NewRouter()
+	rtMain := mux.NewRouter()
 
 	// redis
 	var err error
@@ -106,11 +106,10 @@ func main() {
 	defer conn.Close()
 
 	// article subrouter
-	rt_atcl := rt_main.PathPrefix("/articles").Subrouter()
-	rt_atcl.HandleFunc("/all", makeHandler(art_all))
-	rt_atcl.HandleFunc("/categories", makeHandler(art_categories))
-	// rt_atcl.HandleFunc("/{category}/{id}", makeHandler(art_detail))
-	rt_atcl.HandleFunc("/detail", makeHandler(art_detail))
+	rtAtcl := rtMain.PathPrefix("/blog").Subrouter()
+	rtAtcl.HandleFunc("/all", makeHandler(artAll))
+	rtAtcl.HandleFunc("/categories", makeHandler(artCategories))
+	rtAtcl.HandleFunc("/detail", makeHandler(artDetail))
 
-	http.ListenAndServe(":8080", rt_main)
+	http.ListenAndServe(":8080", rtMain)
 }
