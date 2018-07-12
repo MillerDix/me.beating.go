@@ -106,7 +106,7 @@ func main() {
 	defer conn.Close()
 
 	// article subrouter
-	rtAtcl := rtMain.PathPrefix("/blog").Subrouter()
+	rtAtcl := rtMain.PathPrefix("/api/blog").Subrouter()
 	rtAtcl.HandleFunc("/all", makeHandler(artAll))
 	rtAtcl.HandleFunc("/categories", makeHandler(artCategories))
 	rtAtcl.HandleFunc("/detail", makeHandler(artDetail))
